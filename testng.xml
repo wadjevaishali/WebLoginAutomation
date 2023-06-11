@@ -3,7 +3,7 @@
 <suite name="WebAutomation" verbose="1" >
     <test name="LoginFunctionality" >
         <classes>
-            <class name="org.example.testCases.LibreViewTest" />
+            <class name="org.libreview.testCases.LibreViewTest" />
         </classes>
     </test>
 </suite>
