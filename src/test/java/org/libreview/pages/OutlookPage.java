@@ -19,7 +19,7 @@ public class OutlookPage {
         PageFactory.initElements(webDriver, this);
     }
 
-    @FindBy(linkText = "Sign in")
+    @FindBy(xpath = "//nav[@aria-label='Quick links']//a[@class='internal sign-in-link'][normalize-space()='Sign in']")
     public WebElement signIn;
 
     @FindBy(id = "i0116")
@@ -33,9 +33,6 @@ public class OutlookPage {
 
     @FindBy(id = "idBtn_Back")
     public WebElement noSignedIn;
-
-    @FindBy(xpath = "//div[contains(@class, 'hcptT')]")
-    public List<WebElement> emailList;
 
     @FindBy(xpath = "//div[contains(@class, 'hcptT')]")
     public WebElement emails;
@@ -74,8 +71,8 @@ public class OutlookPage {
     public String fetchVerificationCode(){
         wait = new WebDriverWait(webDriver, Duration.ofSeconds(3));
         wait.until(ExpectedConditions.visibilityOf(this.emails));
-        List<WebElement> emails = this.emailList;
-        emails.get(0).click();
+        //By default the emails will return the first element from the list
+        emails.click();
 
         wait.until(ExpectedConditions.visibilityOf(verificationCode));
         String verificationCodeString = verificationCode.getText();
