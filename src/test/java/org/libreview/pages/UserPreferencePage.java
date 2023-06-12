@@ -30,11 +30,13 @@ public class UserPreferencePage {
 
     WebDriverWait wait;
     public void closeConsent() {
+        System.out.println("Performing click action on element: " + consentClose);
         wait = new WebDriverWait(webDriver, Duration.ofSeconds(3));
         wait.until(ExpectedConditions.visibilityOf(countrySelect));
         consentClose.click();
     }
     public void submitPreference(String preferredCountry, String preferredLanguage) {
+        System.out.println("Performing click action on element: " + preferenceSubmit);
         wait = new WebDriverWait(webDriver, Duration.ofSeconds(1));
         wait.until(ExpectedConditions.visibilityOf(countrySelect));
         new Select(countrySelect).selectByVisibleText(preferredCountry);

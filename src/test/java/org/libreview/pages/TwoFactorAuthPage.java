@@ -15,7 +15,6 @@ import java.time.Duration;
 public class TwoFactorAuthPage {
 
     WebDriver webDriver;
-
     public TwoFactorAuthPage() {
         webDriver = DriverFactory.getDriver();
         PageFactory.initElements(webDriver, this);
@@ -34,31 +33,36 @@ public class TwoFactorAuthPage {
     public WebElement codeSubmit;
 
     public void sendAuthCode() {
+        System.out.println("Performing action on element: " + sendCode);
         waitForTwoFactorAuthPage();
         sendCode.click();
     }
 
     public void openOutlook() {
+        System.out.println("Opening outlook.com in new tab");
         webDriver.switchTo().newWindow(WindowType.TAB);
         webDriver.get("https://outlook.com/");
     }
 
-    public void enterAndSubmitCode(String verificationCode){
+    public void enterAndSubmitCode(String verificationCode) {
+        System.out.println("Performing action on element: " + codeSubmit);
         wait = new WebDriverWait(webDriver, Duration.ofSeconds(3));
         wait.until(ExpectedConditions.visibilityOf(codeInput));
         codeInput.sendKeys(verificationCode.trim());
         codeSubmit.click();
     }
+
     WebDriverWait wait;
+
     public void waitForTwoFactorAuthPage() {
         wait = new WebDriverWait(webDriver, Duration.ofSeconds(3));
         wait.until(ExpectedConditions.visibilityOf(sendCode));
     }
 
     public void verfiyNextStepButtonDisabled() {
+        System.out.println("Verifying " + nextStep + " is disabled");
         wait = new WebDriverWait(webDriver, Duration.ofSeconds(1));
         wait.until(ExpectedConditions.invisibilityOf(sendCode));
         Assert.assertFalse(nextStep.isEnabled());
     }
-
 }

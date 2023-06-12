@@ -43,12 +43,14 @@ public class OutlookPage {
 
     WebDriverWait wait;
     public void clickSignIn() {
+        System.out.println("Performing action on element: " + signIn);
         wait = new WebDriverWait(webDriver, Duration.ofSeconds(2));
         wait.until(ExpectedConditions.visibilityOf(signIn));
         signIn.click();
     }
 
     public void submitUsername(String username) {
+        System.out.println("Performing action on element: " + submit);
         wait = new WebDriverWait(webDriver, Duration.ofSeconds(1));
         wait.until(ExpectedConditions.visibilityOf(this.username));
         this.username.sendKeys(username);
@@ -56,6 +58,7 @@ public class OutlookPage {
     }
 
     public void submitPassword(String password) {
+        System.out.println("Performing action on element: " + submit);
         wait = new WebDriverWait(webDriver, Duration.ofSeconds(1));
         wait.until(ExpectedConditions.visibilityOf(this.password));
         this.password.sendKeys(password);
@@ -63,12 +66,14 @@ public class OutlookPage {
     }
 
     public void clickStaySignedNo(){
+        System.out.println("Performing action on element: " + noSignedIn);
         wait = new WebDriverWait(webDriver, Duration.ofSeconds(1));
         wait.until(ExpectedConditions.visibilityOf(noSignedIn));
         noSignedIn.click();
     }
 
     public String fetchVerificationCode(){
+        System.out.println("Performing action on element: " + emails);
         wait = new WebDriverWait(webDriver, Duration.ofSeconds(3));
         wait.until(ExpectedConditions.visibilityOf(this.emails));
         //By default the emails will return the first element from the list

@@ -28,6 +28,7 @@ public class LoginPage {
     public WebElement memberLoginTitle;
 
     public void submitLogin(String username, String password) {
+        System.out.println("Performing action on element: " + login);
         waitForMemberLoginPage();
         this.username.sendKeys(username);
         this.password.sendKeys(password);
