@@ -1,7 +1,6 @@
 package org.libreview.pages;
 
 import org.libreview.base.DriverFactory;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -47,7 +46,7 @@ public class OutlookPage {
 
     WebDriverWait wait;
     public void clickSignIn() {
-        wait = new WebDriverWait(webDriver, Duration.ofSeconds(1));
+        wait = new WebDriverWait(webDriver, Duration.ofSeconds(2));
         wait.until(ExpectedConditions.visibilityOf(signIn));
         signIn.click();
     }
@@ -73,7 +72,7 @@ public class OutlookPage {
     }
 
     public String fetchVerificationCode(){
-        wait = new WebDriverWait(webDriver, Duration.ofSeconds(1));
+        wait = new WebDriverWait(webDriver, Duration.ofSeconds(3));
         wait.until(ExpectedConditions.visibilityOf(this.emails));
         List<WebElement> emails = this.emailList;
         emails.get(0).click();

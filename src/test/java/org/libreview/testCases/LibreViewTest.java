@@ -1,20 +1,18 @@
 package org.libreview.testCases;
 
+import org.libreview.UserConfig;
 import org.libreview.base.BaseTest;
 import org.libreview.base.DriverFactory;
 import org.libreview.pages.*;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.List;
+import java.io.IOException;
 
 public class LibreViewTest extends BaseTest {
 
     @Test
-    public void verifyLoginFunctionality() throws InterruptedException {
+    public void verifyLoginFunctionality() throws InterruptedException, IOException {
         WebDriver webDriver = DriverFactory.getDriver();
         webDriver.manage().window().maximize();
         //TODO: Wait for the site to load instead
@@ -24,11 +22,11 @@ public class LibreViewTest extends BaseTest {
         userPreferencePage.closeConsent();
 
         // select country and language preference, and then submit
-        userPreferencePage.submitPreference("United States", "English");
+        userPreferencePage.submitPreference(UserConfig.libreviewCountry, UserConfig.libreviewLanguage);
 
         //Login with credentials
         LoginPage loginPage = new LoginPage();
-        loginPage.submitLogin("codechallengeadc@outlook.com","P@ssword$12");
+        loginPage.submitLogin(UserConfig.libreviewUsername,UserConfig.libreviewPassword);
 
         //On 2FA page, click button Send Code
         String originalWindow = webDriver.getWindowHandle();
@@ -44,8 +42,8 @@ public class LibreViewTest extends BaseTest {
         outlookPage.clickSignIn();
 
         // Enter username and password, and sign in
-        outlookPage.submitUsername("codechallengeadc@outlook.com");
-        outlookPage.submitPassword("P@ssword$1234");
+        outlookPage.submitUsername(UserConfig.libreviewUsername);
+        outlookPage.submitPassword(UserConfig.outlookPassword);
         outlookPage.clickStaySignedNo();
 
         // Fetch verification code
